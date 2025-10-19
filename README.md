@@ -101,14 +101,15 @@ Replace components step-by-step with AWS managed services once validated locally
 ⸻
 ## 🗺️ Architecture (local SageMaker-style)
 
+
 ```mermaid
 flowchart LR
     subgraph Dev["Local Dev Laptop ($0)"]
-      A[Data (Iris)] --> B[Train (scikit-learn)]
-      B --> C[Artifacts\nmodel.tar.gz + model_card.json]
-      C --> D[Register Version\nmodel_registry/v000X]
-      D -->|promote| E[[Approve → Production\nsymlink: model_registry/production]]
-      E --> F[Deploy FastAPI Endpoint\n/ping, /invocations]
+      A["Data (Iris)"] --> B["Train (scikit-learn)"]
+      B --> C["Artifacts\nmodel.tar.gz + model_card.json"]
+      C --> D["Register Version\nmodel_registry/v000X"]
+      D -->|promote| E[["Approve → Production\nsymlink: model_registry/production"]]
+      E --> F["Deploy FastAPI Endpoint\n/ping, /invocations"]
     end
 
     subgraph "Maps to AWS (conceptual)"
@@ -119,20 +120,19 @@ flowchart LR
       F ~~~ F_AWS[(SageMaker Real-time Endpoint)]
     end
 
-
 ```
 ## ⚡ Inference paths
 
 ```mermaid
 flowchart TB
     subgraph Real-time
-      R1[Client JSON\n{instances: ...}] --> R2[FastAPI /invocations]
-      R2 --> R3[Load Production\nmodel_registry/production/model.tar.gz]
-      R3 --> R4[Predict\ninference.py → predict_fn]
-      R4 --> R5[Response {predictions: ...}]
+      R1["Client JSON\n{instances: ...}"] --> R2["FastAPI /invocations"]
+      R2 --> R3["Load Production\nmodel_registry/production/model.tar.gz"]
+      R3 --> R4["Predict\ninference.py → predict_fn"]
+      R4 --> R5["Response {predictions: ...}"]
     end
 
-    subgraph Batch (optional extension)
+    subgraph "Batch (optional extension)"
       B1[CSV/Parquet input] --> B2[batch.py]
       B2 --> B3[Load Production\nmodel_registry/production]
       B3 --> B4[Vectorized Predict]
