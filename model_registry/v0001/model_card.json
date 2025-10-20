@@ -1,0 +1,15 @@
+{
+  "model_name": "iris-logreg",
+  "framework": "scikit-learn",
+  "task": "multiclass_classification",
+  "metrics": {
+    "accuracy": 0.9210526315789473,
+    "dataset": "Iris",
+    "n_train": 112,
+    "n_test": 38,
+    "trained_at": "2025-10-20T00:40:22Z"
+  },
+  "artifacts": {
+    "model_tar": "model.tar.gz"
+  }
+}
