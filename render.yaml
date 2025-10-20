@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: sagemaker-like-fastapi
+    env: docker
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /ping
+    # Render builds the Dockerfile at repo root (we copy both src/ and serve/ and model_registry/)
