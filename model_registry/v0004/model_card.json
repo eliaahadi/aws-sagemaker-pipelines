@@ -7,7 +7,7 @@
     "dataset": "Iris",
     "n_train": 112,
     "n_test": 38,
-    "trained_at": "2025-10-21T01:28:51Z"
+    "trained_at": "2025-10-21T01:54:31Z"
   },
   "artifacts": {
     "model_tar": "model.tar.gz"
