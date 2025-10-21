@@ -1,0 +1,9 @@
+# keep registry in repo (for container boot); ignore ephemeral artifacts
+artifacts/
+__pycache__/
+*.pyc
+.env
+
+
+artifacts/latest/model.tar.gz
+artifacts/latest/model/model.joblib
