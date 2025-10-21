@@ -3,8 +3,18 @@ from pydantic import BaseModel
 import numpy as np
 
 from .model_loader import load_production_model
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Local SageMaker-like Endpoint")
+
+# allow your Streamlit app to call the API from another domain
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or restrict later to your Streamlit URL
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 MODEL = None
 INFER = None
