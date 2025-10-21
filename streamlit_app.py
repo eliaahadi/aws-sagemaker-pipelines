@@ -23,7 +23,10 @@ except Exception:
     ok = False
 
 st.info(f"Endpoint: {ENDPOINT_URL}")
-st.success("Endpoint is healthy ✅") if ok else st.warning("Endpoint is not reachable ⚠️. Start it with `make deploy`.")
+if ok:
+    st.success("Endpoint is healthy ✅")
+else:
+    st.warning("Endpoint is not reachable ⚠️. Start it with `make deploy`.")
 
 tabs = st.tabs(["Single prediction", "Batch (CSV)", "About"])
 
