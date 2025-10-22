@@ -23,3 +23,16 @@ invoke:
 reset:
 	rm -rf artifacts model_registry
 	mkdir -p artifacts model_registry
+
+
+# Generate realistic data
+data:
+	python data/generate_telco.py
+
+# Train on real-world telco dataset
+train-telco:
+	python src/train.py --dataset telco
+
+# (still available) toy Iris
+train-iris:
+	python src/train.py --dataset iris

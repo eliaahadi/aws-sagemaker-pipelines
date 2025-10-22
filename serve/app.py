@@ -20,7 +20,7 @@ MODEL = None
 INFER = None
 
 class InvokeRequest(BaseModel):
-    instances: list[list[float]]
+    instances: list[Any]
 
 @app.on_event("startup")
 def _load():
@@ -34,8 +34,15 @@ def ping():
 @app.post("/invocations")
 def invocations(payload: InvokeRequest):
     try:
-        X = np.array(payload.instances, dtype=float)
-        preds = INFER.predict_fn(X, MODEL)  # contract from inference.py
+        preds = INFER.predict_fn(payload.instances, MODEL)
         return {"predictions": preds}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@app.post("/invocations_proba")
+def invocations_proba(payload: InvokeRequest):
+    try:
+        probs = INFER.predict_proba_fn(payload.instances, MODEL)
+        return {"probabilities": probs}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))

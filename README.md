@@ -32,6 +32,19 @@ make deploy
 # 5) Invoke endpoint with sample payload
 make invoke
 
+## 📦 Real-world use case: Telco churn
+We train a **binary classifier** to predict whether a customer is likely to churn next month. Features include tenure, charges, contract type, security/support add-ons, etc. The model is evaluated with **ROC AUC** and **PR AUC**, and we expose **threshold tuning** to balance business costs:
+- **FP** = contacting a happy customer (small cost)
+- **FN** = missing a churning customer (larger cost)
+
+### How to run
+```bash
+make data
+make train-telco
+make register
+make approve
+make deploy   # starts API
+streamlit run streamlit_app.py  # open the dashboard
 
 ```
 Endpoints (once running)
