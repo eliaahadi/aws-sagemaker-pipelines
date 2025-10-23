@@ -1,0 +1,30 @@
+{
+  "model_name": "telco-logreg",
+  "framework": "scikit-learn",
+  "task": "binary",
+  "metrics": {
+    "dataset": "telco",
+    "task": "binary",
+    "trained_at": "2025-10-23T23:55:00Z",
+    "n_train": 3750,
+    "n_test": 1250,
+    "accuracy": 0.6776,
+    "f1@0.5": 0.5264394829612221,
+    "roc_auc": 0.7393604971581783,
+    "pr_auc": 0.48382749752651827
+  },
+  "features": [
+    "tenure_months",
+    "monthly_charges",
+    "total_charges",
+    "contract",
+    "internet_service",
+    "online_security",
+    "tech_support",
+    "is_senior",
+    "has_partner",
+    "has_dependents",
+    "paperless_billing",
+    "payment_method"
+  ]
+}
